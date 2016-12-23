@@ -12,7 +12,7 @@ public class SSHConnect {
 	String host = "";
 	String user = "";
 	String password = "";
-	String command = "";
+	String command = "" ;
 	JSch jsch = null;
 	java.util.Properties config = null;
 
@@ -65,13 +65,7 @@ public class SSHConnect {
 		}
 	}
 
-	public void connectAndDeploy() {
-		try {
-			executeCommand(command);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+	
 
 	public void readServerOutput(Channel channel, InputStream in) {
 		byte[] tmp = new byte[1024];
@@ -101,6 +95,6 @@ public class SSHConnect {
 
 	public static void main(String command) {
 		SSHConnect sce = new SSHConnect(command);
-		sce.connectAndDeploy();
+		sce.executeCommand(command);
 	}
 }
