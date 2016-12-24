@@ -15,15 +15,18 @@ public class SSHConnect {
 	String command = "" ;
 	JSch jsch = null;
 	java.util.Properties config = null;
-
+	
+	
+	
 	SSHConnect(String command) {
 		this.host = "10.0.0.12";
 		this.user = "pi";
 		this.password = "root";
 		this.command = command;
-	}
-
-	public Channel initializeSession() {
+		
+	
+}
+	public  Channel initializeSession() {
 		try {
 			config = new java.util.Properties();
 			config.put("StrictHostKeyChecking", "no");
@@ -42,7 +45,6 @@ public class SSHConnect {
 
 	public  void executeCommand(String command) {
 		try {
-			channel = initializeSession();
 			if (channel != null) {
 				System.out.println("<<<<<<<<not null>>>>>>>>>>");
 				((ChannelExec) channel).setCommand(command);
@@ -51,9 +53,9 @@ public class SSHConnect {
 				InputStream in = channel.getInputStream();
 				channel.connect();
 				readServerOutput(channel, in);
-				in.close();
-				channel.disconnect();
-				session.disconnect();
+				//in.close();
+				//channel.disconnect();
+				//session.disconnect();
 				System.out.println("DONE");
 				// System.exit(0);
 			} else {
@@ -93,7 +95,7 @@ public class SSHConnect {
 		}
 	}
 
-	public static void main(String command) {
+	public static void sender(String command) {
 		SSHConnect sce = new SSHConnect(command);
 		sce.executeCommand(command);
 	}
