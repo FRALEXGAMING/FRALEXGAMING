@@ -6,22 +6,21 @@ import at.fralexgaming.boot.PreInit;
 
 public class Boot {
 
-	public static void preInit(){
+	public static void preInit() {
 		System.out.println("preInit is starting");
-		PreInit preInit = new PreInit();
-		preInit.main();
+		PreInit.main();
 		System.out.println("preInit is finished");
 	}
-	public static void Init(){
+
+	public static void Init() {
 		System.out.println("Init is starting");
-		Init init = new Init();
-		init.main();
+		Init.main();
 		System.out.println("Init is finished");
 	}
-	public static void postInit(){
+
+	public static void postInit() {
 		System.out.println("postInit is starting");
-		PostInit postInit = new PostInit();
-		postInit.main();
+		PostInit.main();
 		System.out.println("postInit is finished");
 	}
 }

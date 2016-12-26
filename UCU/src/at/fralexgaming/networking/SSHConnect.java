@@ -13,7 +13,7 @@ public class SSHConnect {
 	 * hostname = the host you want connect to password = the password from the
 	 * user command = the line in the console you want to execute
 	 */
-	public static void main(String user, String hostname, String password, String command) {
+	public static void SSH(String user, String hostname, String password, String command) {
 
 		JSch jsch = new JSch();
 

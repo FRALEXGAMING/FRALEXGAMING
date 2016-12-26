@@ -13,10 +13,10 @@ public class Main {
 		Boot.preInit();
 		Boot.Init();
 		Boot.postInit();
-		
+
 	}
-	
-	public static void  loginFalse() {
+
+	public static void loginFalse() {
 		System.exit(1);
 	}
 }

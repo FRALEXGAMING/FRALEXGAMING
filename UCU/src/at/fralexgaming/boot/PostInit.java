@@ -1,10 +1,11 @@
 package at.fralexgaming.boot;
 
+import at.fralexgaming.main.UI;
+
 public class PostInit {
 
-	public void main() {
-		
-		System.out.println("postINIT Class");
-		
+	public static void main() {
+		UI.main();
+		System.out.println("UI started");
 	}
 }
