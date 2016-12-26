@@ -1,38 +1,35 @@
-
 package at.fralexgaming;
 
 import com.jcraft.jsch.*;
 
 public class SSHConnect {
-	
-	public static void main(String user, String hostname, String password, String command){
-	
-	JSch jsch = new JSch();
 
-	try
-	{
-		//connection
-	  Session session = jsch.getSession(user, hostname, 22);
-	  session.setConfig("StrictHostKeyChecking", "no");
-	  session.setPassword(password);
-	  session.connect();
+	/*
+	 * this class sets the connection to the ssh server up it uses the variables
+	 * user hostname password and command user = the user you want connect to
+	 * hostname = the host you want connect to password = the password from the
+	 * user command = the line in the console you want to execute
+	 */
+	public static void main(String user, String hostname, String password, String command) {
 
-	  
-	  Channel channel = session.openChannel("exec");
-	  ((ChannelExec) channel).setCommand(command);
-	  channel.setInputStream(null);
-	  ((ChannelExec) channel).setErrStream(System.err);
+		JSch jsch = new JSch();
 
-	  channel.connect();
+		try {
+			// connection
+			Session session = jsch.getSession(user, hostname, 22);
+			session.setConfig("StrictHostKeyChecking", "no");
+			session.setPassword(password);
+			session.connect();
+			// execute command
+			Channel channel = session.openChannel("exec");
+			((ChannelExec) channel).setCommand(command);
 
-	  channel.disconnect();
-	  session.disconnect();
+			channel.connect();
+			// disconnect
+			channel.disconnect();
+			session.disconnect();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
-	catch (Exception e)
-	{
-	  System.out.println(e.getMessage());
-	}
-	}
-
-	
 }
