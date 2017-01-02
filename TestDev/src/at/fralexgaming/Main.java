@@ -15,7 +15,7 @@ public class Main {
 	  public static void main(String[] args)
 	  {
 	    
-	  
+		  SSHConnect.main("pi", "raspberrypi", "root", "gpio mode 1 out");
 
 	  
 	    frame = new JFrame("LED Controll");
@@ -23,6 +23,7 @@ public class Main {
 	    // create our jbutton
 	    JButton ButtonOn = new JButton("EIN");
 	    JButton ButtonOff = new JButton("AUS");
+	    JButton ButtonBlinc = new JButton("BLINCKEN");
 	    // add the listener to the jbutton to handle the "pressed" event
 	    ButtonOn.addActionListener(new ActionListener()
 	    {
@@ -38,11 +39,25 @@ public class Main {
 	        SSHConnect.main("pi", "raspberrypi", "root", "gpio write 1 0");
 	      }
 	    });
+	    ButtonBlinc.addActionListener(new ActionListener()
+	    {
+	      public void actionPerformed(ActionEvent e)
+	      {
+	    	  for(int i=0; i<5; i++)
+	    	  {
+	    		  SSHConnect.main("pi", "raspberrypi", "root", "gpio write 1 1");
+	    		  SSHConnect.main("pi", "raspberrypi", "root", "gpio write 1 0");
+
+	    	  }
+	        
+	      }
+	    });
 
 	    // put the button on the frame
 	    frame.getContentPane().setLayout(new FlowLayout());
 	    frame.add(ButtonOn);
 	    frame.add(ButtonOff);
+	    frame.add(ButtonBlinc);
 
 	    // set up the jframe, then display it
 	    frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
